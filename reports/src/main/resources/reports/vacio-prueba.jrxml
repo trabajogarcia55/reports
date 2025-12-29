@@ -1,0 +1,122 @@
+<!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
+<jasperReport name="vacio-prueba" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9308129e-fbaa-4bc7-8583-108250bc7526">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="posgreSQL"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<query language="sql"><![CDATA[SELECT
+    c.id_cotizacion,
+    c.fecha_emision,
+    c.total_general,
+    c.nombre_cliente,
+    d.id_detalle_cotizacion,
+    d.descripcion,
+    d.precio_unitario,
+    d.cantidad_vehiculos,
+    d.total
+FROM general.cotizacion c
+LEFT JOIN general.detalle_cotizacion d
+    ON d.id_cotizacion = c.id_cotizacion
+WHERE c.id_cotizacion = 1
+ORDER BY d.id_detalle_cotizacion
+]]></query>
+	<field name="id_cotizacion" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id_cotizacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="id_cotizacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cotizacion"/>
+	</field>
+	<field name="fecha_emision" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_emision"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_emision"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cotizacion"/>
+	</field>
+	<field name="total_general" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="total_general"/>
+		<property name="com.jaspersoft.studio.field.label" value="total_general"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cotizacion"/>
+	</field>
+	<field name="nombre_cliente" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre_cliente"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre_cliente"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cotizacion"/>
+	</field>
+	<field name="id_detalle_cotizacion" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id_detalle_cotizacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="id_detalle_cotizacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="detalle_cotizacion"/>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="descripcion"/>
+		<property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="detalle_cotizacion"/>
+	</field>
+	<field name="precio_unitario" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="precio_unitario"/>
+		<property name="com.jaspersoft.studio.field.label" value="precio_unitario"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="detalle_cotizacion"/>
+	</field>
+	<field name="cantidad_vehiculos" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="cantidad_vehiculos"/>
+		<property name="com.jaspersoft.studio.field.label" value="cantidad_vehiculos"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="detalle_cotizacion"/>
+	</field>
+	<field name="total" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="total"/>
+		<property name="com.jaspersoft.studio.field.label" value="total"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="detalle_cotizacion"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="79" splitType="Stretch">
+		<element kind="staticText" uuid="4a08ba17-dc00-4454-873b-e7001fffc67f" x="110" y="21" width="336" height="37" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[REPORTE VACIO PARA PRUEBAS]]></text>
+		</element>
+	</title>
+	<pageHeader height="35" splitType="Stretch"/>
+	<columnHeader height="61" splitType="Stretch">
+		<element kind="staticText" uuid="6ebb75eb-c555-4f9d-b942-b875c742832e" x="9" y="0" width="100" height="30">
+			<text><![CDATA[id_cotizacion]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="08af993b-ca0c-4f44-81a8-8f530fa0d97f"/>
+		</element>
+		<element kind="staticText" uuid="8e0ae02a-c4ca-41f6-a158-f9a739098cdf" x="122" y="0" width="100" height="30">
+			<text><![CDATA[fecha_emision]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2f7eccc7-71b0-4c4e-8a3c-538256e715d5"/>
+		</element>
+		<element kind="staticText" uuid="dce22f1a-3f19-4f45-a8d3-70c9d4cfc21c" x="251" y="0" width="100" height="30">
+			<text><![CDATA[total_general]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ac6d3454-2586-4c2f-b3e4-032968262e5e"/>
+		</element>
+		<element kind="staticText" uuid="8002664a-a54d-4f20-919e-d60dc9fa76ae" x="365" y="0" width="100" height="30">
+			<text><![CDATA[descripcion]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fe0a37c4-95ba-4934-8116-5603247459e4"/>
+		</element>
+		<element kind="staticText" uuid="048ed6b3-d7d1-4555-b935-0cc27336a54c" x="474" y="0" width="100" height="30">
+			<text><![CDATA[precio_unitario]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9f79160d-6b66-4973-a7d7-7dae6ac93c50"/>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="59" splitType="Stretch">
+			<element kind="textField" uuid="762fd083-09ff-44b8-8131-0447f8527cff" x="9" y="15" width="100" height="30">
+				<expression><![CDATA[$F{id_cotizacion}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="08af993b-ca0c-4f44-81a8-8f530fa0d97f"/>
+			</element>
+			<element kind="textField" uuid="f8511e8b-1131-43c0-b189-fa11d1e99ff1" x="122" y="15" width="100" height="30">
+				<expression><![CDATA[$F{fecha_emision}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2f7eccc7-71b0-4c4e-8a3c-538256e715d5"/>
+			</element>
+			<element kind="textField" uuid="d1e2d3d5-43e5-46b4-a970-7e3c024d09a5" x="251" y="15" width="100" height="30">
+				<expression><![CDATA[$F{total_general}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ac6d3454-2586-4c2f-b3e4-032968262e5e"/>
+			</element>
+			<element kind="textField" uuid="22ddb88e-6a9a-46dd-8434-d7bf7bf35d53" x="365" y="17" width="100" height="30">
+				<expression><![CDATA[$F{descripcion}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fe0a37c4-95ba-4934-8116-5603247459e4"/>
+			</element>
+			<element kind="textField" uuid="51d87611-7119-4295-906c-48f80d2efb6a" x="474" y="18" width="100" height="30">
+				<expression><![CDATA[$F{precio_unitario}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9f79160d-6b66-4973-a7d7-7dae6ac93c50"/>
+			</element>
+		</band>
+	</detail>
+	<columnFooter height="45" splitType="Stretch"/>
+	<pageFooter height="54" splitType="Stretch"/>
+	<summary height="42" splitType="Stretch"/>
+</jasperReport>
