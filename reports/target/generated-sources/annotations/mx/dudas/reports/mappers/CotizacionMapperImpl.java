@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-12-28T19:59:48-0600",
-    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.42.0.v20250526-2018, environment: Java 21.0.7 (Eclipse Adoptium)"
+    date = "2025-12-29T17:23:19-0600",
+    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.42.0.v20250526-2018, environment: Java 21.0.9 (Ubuntu)"
 )
 @Component
 public class CotizacionMapperImpl implements CotizacionMapper {
@@ -23,13 +23,13 @@ public class CotizacionMapperImpl implements CotizacionMapper {
 
         CotizacionDTO cotizacionDTO = new CotizacionDTO();
 
-        cotizacionDTO.setIdCotizacion( cotizacion.getIdCotizacion() );
+        cotizacionDTO.setClienteProspecto( cotizacion.getClienteProspecto() );
         cotizacionDTO.setFechaEmision( cotizacion.getFechaEmision() );
         cotizacionDTO.setFechaVencimiento( cotizacion.getFechaVencimiento() );
-        cotizacionDTO.setSubtotal( cotizacion.getSubtotal() );
+        cotizacionDTO.setIdCotizacion( cotizacion.getIdCotizacion() );
         cotizacionDTO.setIva( cotizacion.getIva() );
+        cotizacionDTO.setSubtotal( cotizacion.getSubtotal() );
         cotizacionDTO.setTotalGeneral( cotizacion.getTotalGeneral() );
-        cotizacionDTO.setClienteProspecto( cotizacion.getClienteProspecto() );
         cotizacionDTO.setVendedor( cotizacion.getVendedor() );
 
         return cotizacionDTO;

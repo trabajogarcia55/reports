@@ -5,8 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import mx.dudas.reports.entities.Cotizacion;
 
-
 @Repository
 public interface CotizacionRepository extends JpaRepository<Cotizacion, Integer> {
-	
 }

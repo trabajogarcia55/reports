@@ -7,11 +7,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import mx.dudas.reports.Services.ReportService;
 import mx.dudas.reports.dtos.CotizacionDTO;
+import mx.dudas.reports.dtos.DetalleCotizacionDTO;
 
 @RestController
 @RequestMapping("/api")
@@ -50,5 +52,28 @@ public class ReportController {
 		
 	    return ResponseEntity.ok(cotizaciones);
 	}
+	
+	// http://localhost:8080/api/{cotizacionId}
+	@GetMapping("/{cotizacionId}")
+	private ResponseEntity<CotizacionDTO> findClienteById(@PathVariable Integer cotizacionId) {
+		//logger.info("findCotizacionById {}", cotizacionId);
+		CotizacionDTO cotizacion = reportService.findCotizacionById(cotizacionId);
+
+		if (cotizacion != null) {
+			return ResponseEntity.ok(cotizacion);
+		}
+
+		return ResponseEntity.notFound().build();
+	}
+	
+	// http://localhost:8080/api/cotizaciones/{id}/detalles
+	@GetMapping("/{cotizacionId}/detalles")
+	public ResponseEntity<List<DetalleCotizacionDTO>> getDetallesByCotizacionId(
+            @PathVariable Integer cotizacionId) {
+
+        return ResponseEntity.ok(
+                reportService.findDetallesByCotizacionId(cotizacionId)
+        );
+    }
 	
 }

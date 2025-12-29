@@ -11,12 +11,11 @@ import mx.dudas.reports.entities.DetalleCotizacion;
 @Mapper(componentModel = "spring")
 public interface CotizacionDetalleMapper {
 
-	@Mapping(source = "cotizacion.id", target = "idCotizacion")
-	DetalleCotizacionDTO toDTO(DetalleCotizacion entity);
+    @Mapping(source = "cotizacion.idCotizacion", target = "idCotizacion")
+    DetalleCotizacionDTO toDTO(DetalleCotizacion entity);
 
-    @Mapping(source = "idCotizacion", target = "cotizacion.id")
+    @Mapping(target = "cotizacion", ignore = true)
     DetalleCotizacion toEntity(DetalleCotizacionDTO dto);
 
     List<DetalleCotizacionDTO> toDTOList(List<DetalleCotizacion> entities);
-    
 }

@@ -5,15 +5,19 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.sql.DataSource;
 
 import org.springframework.stereotype.Service;
 
 import mx.dudas.reports.dtos.CotizacionDTO;
+import mx.dudas.reports.dtos.DetalleCotizacionDTO;
+import mx.dudas.reports.entities.Cotizacion;
 import mx.dudas.reports.mappers.CotizacionDetalleMapper;
 import mx.dudas.reports.mappers.CotizacionMapper;
 import mx.dudas.reports.repositories.CotizacionRepository;
+import mx.dudas.reports.repositories.DetalleCotizacionRepository;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -25,14 +29,16 @@ public class ReportService {
 
     private final DataSource dataSource;
     private final CotizacionRepository cotizacionRepository;
+    private final DetalleCotizacionRepository detalleCotizacionRepository;
     private final CotizacionMapper cotizacionMapper;
     private final CotizacionDetalleMapper detalleCotizacionMapper;
 
-    public ReportService( DataSource dataSource, CotizacionMapper cotizacionMapper, CotizacionRepository cotizacionRepository, CotizacionDetalleMapper detalleCotizacionMapper) {
+    public ReportService( DataSource dataSource, CotizacionMapper cotizacionMapper, CotizacionRepository cotizacionRepository, CotizacionDetalleMapper detalleCotizacionMapper, DetalleCotizacionRepository detalleCotizacionRepository) {
         this.dataSource = dataSource;
         this.cotizacionMapper = cotizacionMapper;
         this.cotizacionRepository = cotizacionRepository;
         this.detalleCotizacionMapper = detalleCotizacionMapper;
+        this.detalleCotizacionRepository = detalleCotizacionRepository;
     }
     
     // metodo que generqa el pdf
@@ -63,7 +69,24 @@ public class ReportService {
     // Listar cotizaciones
     public List<CotizacionDTO> getAllCotizaciones() {
         return cotizacionMapper.toDTOList(cotizacionRepository.findAll());
+    }
+    
+    //Buscar cotizacion por id
+    public CotizacionDTO findCotizacionById(Integer cotizacionId) {
+		Optional<Cotizacion> result = cotizacionRepository.findById(cotizacionId);
 
+		if (result.isPresent()) {
+			return cotizacionMapper.toDTO(result.get());
+		}
+
+		return null;
+	}
+    
+    //Detalles de la cotizacion buscada
+    public List<DetalleCotizacionDTO> findDetallesByCotizacionId(Integer idCotizacion) {
+        return detalleCotizacionMapper.toDTOList(
+                detalleCotizacionRepository.findByCotizacion_IdCotizacion(idCotizacion)
+        );
     }
     
     
