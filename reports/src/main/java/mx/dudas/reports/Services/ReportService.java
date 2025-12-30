@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 
 import org.springframework.stereotype.Service;
 
+import mx.dudas.reports.dtos.CotizacionConDetallesDTO;
 import mx.dudas.reports.dtos.CotizacionDTO;
 import mx.dudas.reports.dtos.DetalleCotizacionDTO;
 import mx.dudas.reports.entities.Cotizacion;
@@ -88,6 +89,42 @@ public class ReportService {
                 detalleCotizacionRepository.findByCotizacion_IdCotizacion(idCotizacion)
         );
     }
+    
+    public List<CotizacionConDetallesDTO> getCotizacionesConDetalles() {
+    	return cotizacionRepository.findAll()
+                .stream()
+                .map(cotizacion -> {
+
+                    CotizacionConDetallesDTO dto = new CotizacionConDetallesDTO();
+
+                    // 1️⃣ Mapear cotización
+                    CotizacionDTO cotizacionDTO = cotizacionMapper.toDTO(cotizacion);
+
+                    dto.setIdCotizacion(cotizacionDTO.getIdCotizacion());
+                    dto.setFechaEmision(cotizacionDTO.getFechaEmision());
+                    dto.setFechaVencimiento(cotizacionDTO.getFechaVencimiento());
+                    dto.setSubtotal(cotizacionDTO.getSubtotal());
+                    dto.setIva(cotizacionDTO.getIva());
+                    dto.setTotalGeneral(cotizacionDTO.getTotalGeneral());
+                    dto.setClienteProspecto(cotizacionDTO.getClienteProspecto());
+                    dto.setVendedor(cotizacionDTO.getVendedor());
+
+                    // 2️⃣ Obtener y mapear detalles
+                    List<DetalleCotizacionDTO> detalles =
+                            detalleCotizacionMapper.toDTOList(
+                                    detalleCotizacionRepository
+                                            .findByCotizacion_IdCotizacion(
+                                                    cotizacion.getIdCotizacion()
+                                            )
+                            );
+
+                    dto.setDetalles(detalles);
+
+                    return dto;
+                })
+                .toList();
+    }
+    
     
     
 }

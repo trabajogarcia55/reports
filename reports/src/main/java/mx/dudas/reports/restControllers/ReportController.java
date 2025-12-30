@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import mx.dudas.reports.Services.ReportService;
+import mx.dudas.reports.dtos.CotizacionConDetallesDTO;
 import mx.dudas.reports.dtos.CotizacionDTO;
 import mx.dudas.reports.dtos.DetalleCotizacionDTO;
 
@@ -76,4 +77,12 @@ public class ReportController {
         );
     }
 	
+	// http://localhost:8080/api/cotizaciones/con-detalles
+	@GetMapping("/cotizaciones/con-detalles")
+	public ResponseEntity<List<CotizacionConDetallesDTO>> listarCotizacionesConDetalles() {
+
+	    return ResponseEntity.ok(
+	            reportService.getCotizacionesConDetalles()
+	    );
+	}
 }
