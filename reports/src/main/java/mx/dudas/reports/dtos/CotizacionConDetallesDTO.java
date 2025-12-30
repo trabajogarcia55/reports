@@ -4,20 +4,30 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-public class CotizacionConDetallesDTO {
+public class CotizacionConDetallesDTO {//dto para buscar o crear usuario. agregar mas datos que faltan
 	private Integer idCotizacion;
-    private LocalDate fechaEmision;
-    private LocalDate fechaVencimiento;
     private BigDecimal subtotal;
     private BigDecimal iva;
-    private BigDecimal totalGeneral;
-    private String clienteProspecto;
     private String vendedor;
+    
+    private String clienteProspecto;
+    private LocalDate fechaEmision;
+    private LocalDate fechaVencimiento;
+    private String garantia;
+    private BigDecimal totalGeneral;
 
     private List<DetalleCotizacionDTO> detalles;
 
 	public Integer getIdCotizacion() {
 		return idCotizacion;
+	}
+
+	public String getGarantia() {
+		return garantia;
+	}
+
+	public void setGarantia(String garantia) {
+		this.garantia = garantia;
 	}
 
 	public void setIdCotizacion(Integer idCotizacion) {
@@ -40,22 +50,6 @@ public class CotizacionConDetallesDTO {
 		this.fechaVencimiento = fechaVencimiento;
 	}
 
-	public BigDecimal getSubtotal() {
-		return subtotal;
-	}
-
-	public void setSubtotal(BigDecimal subtotal) {
-		this.subtotal = subtotal;
-	}
-
-	public BigDecimal getIva() {
-		return iva;
-	}
-
-	public void setIva(BigDecimal iva) {
-		this.iva = iva;
-	}
-
 	public BigDecimal getTotalGeneral() {
 		return totalGeneral;
 	}
@@ -70,14 +64,6 @@ public class CotizacionConDetallesDTO {
 
 	public void setClienteProspecto(String clienteProspecto) {
 		this.clienteProspecto = clienteProspecto;
-	}
-
-	public String getVendedor() {
-		return vendedor;
-	}
-
-	public void setVendedor(String vendedor) {
-		this.vendedor = vendedor;
 	}
 
 	public List<DetalleCotizacionDTO> getDetalles() {

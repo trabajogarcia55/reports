@@ -42,7 +42,7 @@ public class ReportService {
         this.detalleCotizacionRepository = detalleCotizacionRepository;
     }
     
-    // metodo que generqa el pdf
+    // metodo que generar el pdf
     public byte[] generarReport(String reportName, Integer idCotizacion)
             throws JRException, SQLException {
 
@@ -103,11 +103,12 @@ public class ReportService {
                     dto.setIdCotizacion(cotizacionDTO.getIdCotizacion());
                     dto.setFechaEmision(cotizacionDTO.getFechaEmision());
                     dto.setFechaVencimiento(cotizacionDTO.getFechaVencimiento());
-                    dto.setSubtotal(cotizacionDTO.getSubtotal());
-                    dto.setIva(cotizacionDTO.getIva());
+                    //dto.setSubtotal(cotizacionDTO.getSubtotal());
+                    //dto.setIva(cotizacionDTO.getIva());
                     dto.setTotalGeneral(cotizacionDTO.getTotalGeneral());
                     dto.setClienteProspecto(cotizacionDTO.getClienteProspecto());
-                    dto.setVendedor(cotizacionDTO.getVendedor());
+                    //dto.setVendedor(cotizacionDTO.getVendedor());
+                    dto.setGarantia(cotizacionDTO.getGarantia());
 
                     // 2️⃣ Obtener y mapear detalles
                     List<DetalleCotizacionDTO> detalles =

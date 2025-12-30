@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-12-29T17:23:19-0600",
+    date = "2025-12-30T16:57:04-0600",
     comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.42.0.v20250526-2018, environment: Java 21.0.9 (Ubuntu)"
 )
 @Component
@@ -26,6 +26,7 @@ public class CotizacionMapperImpl implements CotizacionMapper {
         cotizacionDTO.setClienteProspecto( cotizacion.getClienteProspecto() );
         cotizacionDTO.setFechaEmision( cotizacion.getFechaEmision() );
         cotizacionDTO.setFechaVencimiento( cotizacion.getFechaVencimiento() );
+        cotizacionDTO.setGarantia( cotizacion.getGarantia() );
         cotizacionDTO.setIdCotizacion( cotizacion.getIdCotizacion() );
         cotizacionDTO.setIva( cotizacion.getIva() );
         cotizacionDTO.setSubtotal( cotizacion.getSubtotal() );

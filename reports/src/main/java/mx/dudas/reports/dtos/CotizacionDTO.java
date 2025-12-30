@@ -3,7 +3,7 @@ package mx.dudas.reports.dtos;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class CotizacionDTO {
+public class CotizacionDTO {//DTO para listar(solo se envian los datos necesarios)
 
     private Integer idCotizacion;
     private LocalDate fechaEmision;
@@ -13,7 +13,15 @@ public class CotizacionDTO {
     private BigDecimal totalGeneral;
     private String clienteProspecto;
     private String vendedor;
+    private String garantia;
 
+	public String getGarantia() {
+		return garantia;
+	}
+
+	public void setGarantia(String garantia) {
+		this.garantia = garantia;
+	}
 
 	public Integer getIdCotizacion() {
 		return idCotizacion;
