@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import mx.dudas.reports.Services.ReportService;
-import mx.dudas.reports.dtos.CotizacionConDetallesDTO;
 import mx.dudas.reports.dtos.CotizacionDTO;
+import mx.dudas.reports.dtos.CotizacionDetalleDTO;
 import mx.dudas.reports.dtos.DetalleCotizacionDTO;
 
 @RestController
@@ -54,13 +54,26 @@ public class ReportController {
 	    return ResponseEntity.ok(cotizaciones);
 	}
 	
+	@GetMapping("/cotizaciones/{cotizacionId}")
+	public ResponseEntity<CotizacionDetalleDTO> findCotizacionById(
+	        @PathVariable Integer cotizacionId) {
+
+	    CotizacionDetalleDTO dto =
+	            reportService.findCotizacionConDetalles(cotizacionId);
+
+	    if (dto == null) {
+	        return ResponseEntity.notFound().build();
+	    }
+
+	    return ResponseEntity.ok(dto);
+	}
 	//Crear
 	//Actualizar
 	//Buscar
 	
 	// http://localhost:8080/api/{cotizacionId}
 	/*@GetMapping("cotizaciones/{cotizacionId}")
-	private ResponseEntity<CotizacionDTO> findClienteById(@PathVariable Integer cotizacionId) {
+	private ResponseEntity<DetalleCotizacionDTO> findClienteById(@PathVariable Integer cotizacionId) {
 		//logger.info("findCotizacionById {}", cotizacionId);
 		CotizacionDTO cotizacion = reportService.findCotizacionById(cotizacionId);
 

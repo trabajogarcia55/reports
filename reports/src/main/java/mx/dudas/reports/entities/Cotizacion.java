@@ -165,8 +165,6 @@ public class Cotizacion {
 
 	public void setDetalles(List<DetalleCotizacion> detalles) {
 		this.detalles = detalles;
-	}
-    
-    
+	} 
     
 }

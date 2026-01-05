@@ -2,10 +2,10 @@ package mx.dudas.reports.dtos;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
-public class CotizacionDTO {
-
-    private Integer idCotizacion;
+public class CotizacionDetalleDTO {
+	private Integer idCotizacion;
     private LocalDate fechaEmision;
     private LocalDate fechaVencimiento;
     private BigDecimal subtotal;
@@ -14,14 +14,11 @@ public class CotizacionDTO {
     private String clienteProspecto;
     private String vendedor;
     private String garantia;
+    private String detalleCostos;
+    private String detalleTabla;
+    private String saludo;
 
-	public String getGarantia() {
-		return garantia;
-	}
-
-	public void setGarantia(String garantia) {
-		this.garantia = garantia;
-	}
+    private List<DetalleCotizacionDTO> detalles;
 
 	public Integer getIdCotizacion() {
 		return idCotizacion;
@@ -87,6 +84,46 @@ public class CotizacionDTO {
 		this.vendedor = vendedor;
 	}
 
+	public String getGarantia() {
+		return garantia;
+	}
+
+	public void setGarantia(String garantia) {
+		this.garantia = garantia;
+	}
+
+	public String getDetalleCostos() {
+		return detalleCostos;
+	}
+
+	public void setDetalleCostos(String detalleCostos) {
+		this.detalleCostos = detalleCostos;
+	}
+
+	public String getDetalleTabla() {
+		return detalleTabla;
+	}
+
+	public void setDetalleTabla(String detalleTabla) {
+		this.detalleTabla = detalleTabla;
+	}
+
+	public String getSaludo() {
+		return saludo;
+	}
+
+	public void setSaludo(String saludo) {
+		this.saludo = saludo;
+	}
+
+	public List<DetalleCotizacionDTO> getDetalles() {
+		return detalles;
+	}
+
+	public void setDetalles(List<DetalleCotizacionDTO> detalles) {
+		this.detalles = detalles;
+	}
+    
     
     
 }

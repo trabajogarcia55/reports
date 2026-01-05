@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-12-30T16:57:04-0600",
-    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.42.0.v20250526-2018, environment: Java 21.0.9 (Ubuntu)"
+    date = "2026-01-04T20:56:56-0600",
+    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.42.0.v20250526-2018, environment: Java 21.0.7 (Eclipse Adoptium)"
 )
 @Component
 public class CotizacionMapperImpl implements CotizacionMapper {
@@ -23,14 +23,14 @@ public class CotizacionMapperImpl implements CotizacionMapper {
 
         CotizacionDTO cotizacionDTO = new CotizacionDTO();
 
-        cotizacionDTO.setClienteProspecto( cotizacion.getClienteProspecto() );
-        cotizacionDTO.setFechaEmision( cotizacion.getFechaEmision() );
-        cotizacionDTO.setFechaVencimiento( cotizacion.getFechaVencimiento() );
         cotizacionDTO.setGarantia( cotizacion.getGarantia() );
         cotizacionDTO.setIdCotizacion( cotizacion.getIdCotizacion() );
-        cotizacionDTO.setIva( cotizacion.getIva() );
+        cotizacionDTO.setFechaEmision( cotizacion.getFechaEmision() );
+        cotizacionDTO.setFechaVencimiento( cotizacion.getFechaVencimiento() );
         cotizacionDTO.setSubtotal( cotizacion.getSubtotal() );
+        cotizacionDTO.setIva( cotizacion.getIva() );
         cotizacionDTO.setTotalGeneral( cotizacion.getTotalGeneral() );
+        cotizacionDTO.setClienteProspecto( cotizacion.getClienteProspecto() );
         cotizacionDTO.setVendedor( cotizacion.getVendedor() );
 
         return cotizacionDTO;

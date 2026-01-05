@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-12-29T17:23:19-0600",
-    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.42.0.v20250526-2018, environment: Java 21.0.9 (Ubuntu)"
+    date = "2026-01-04T20:56:56-0600",
+    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.42.0.v20250526-2018, environment: Java 21.0.7 (Eclipse Adoptium)"
 )
 @Component
 public class CotizacionDetalleMapperImpl implements CotizacionDetalleMapper {
@@ -25,28 +25,13 @@ public class CotizacionDetalleMapperImpl implements CotizacionDetalleMapper {
         DetalleCotizacionDTO detalleCotizacionDTO = new DetalleCotizacionDTO();
 
         detalleCotizacionDTO.setIdCotizacion( entityCotizacionIdCotizacion( entity ) );
-        detalleCotizacionDTO.setCantidad( entity.getCantidad() );
+        detalleCotizacionDTO.setIdDetalleCotizacion( entity.getIdDetalleCotizacion() );
         detalleCotizacionDTO.setDescripcion( entity.getDescripcion() );
-        detalleCotizacionDTO.setImporte( entity.getImporte() );
         detalleCotizacionDTO.setPrecioUnitario( entity.getPrecioUnitario() );
+        detalleCotizacionDTO.setImporte( entity.getImporte() );
+        detalleCotizacionDTO.setCantidad( entity.getCantidad() );
 
         return detalleCotizacionDTO;
-    }
-
-    @Override
-    public DetalleCotizacion toEntity(DetalleCotizacionDTO dto) {
-        if ( dto == null ) {
-            return null;
-        }
-
-        DetalleCotizacion detalleCotizacion = new DetalleCotizacion();
-
-        detalleCotizacion.setCantidad( dto.getCantidad() );
-        detalleCotizacion.setDescripcion( dto.getDescripcion() );
-        detalleCotizacion.setImporte( dto.getImporte() );
-        detalleCotizacion.setPrecioUnitario( dto.getPrecioUnitario() );
-
-        return detalleCotizacion;
     }
 
     @Override

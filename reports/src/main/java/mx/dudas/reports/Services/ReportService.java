@@ -11,8 +11,8 @@ import javax.sql.DataSource;
 
 import org.springframework.stereotype.Service;
 
-import mx.dudas.reports.dtos.CotizacionConDetallesDTO;
 import mx.dudas.reports.dtos.CotizacionDTO;
+import mx.dudas.reports.dtos.CotizacionDetalleDTO;
 import mx.dudas.reports.dtos.DetalleCotizacionDTO;
 import mx.dudas.reports.entities.Cotizacion;
 import mx.dudas.reports.mappers.CotizacionDetalleMapper;
@@ -72,59 +72,44 @@ public class ReportService {
         return cotizacionMapper.toDTOList(cotizacionRepository.findAll());
     }
     
-    //Buscar cotizacion por id
-    public CotizacionDTO findCotizacionById(Integer cotizacionId) {
-		Optional<Cotizacion> result = cotizacionRepository.findById(cotizacionId);
+    public CotizacionDetalleDTO findCotizacionConDetalles(Integer cotizacionId) {
 
-		if (result.isPresent()) {
-			return cotizacionMapper.toDTO(result.get());
-		}
+        Cotizacion cotizacion = cotizacionRepository.findById(cotizacionId)
+                .orElse(null);
 
-		return null;
-	}
-    
-    //Detalles de la cotizacion buscada
-    public List<DetalleCotizacionDTO> findDetallesByCotizacionId(Integer idCotizacion) {
-        return detalleCotizacionMapper.toDTOList(
-                detalleCotizacionRepository.findByCotizacion_IdCotizacion(idCotizacion)
+        if (cotizacion == null) {
+            return null;
+        }
+
+        // Mapear cabecera
+        CotizacionDetalleDTO dto = new CotizacionDetalleDTO();
+        dto.setIdCotizacion(cotizacion.getIdCotizacion());
+        dto.setFechaEmision(cotizacion.getFechaEmision());
+        dto.setFechaVencimiento(cotizacion.getFechaVencimiento());
+        dto.setSubtotal(cotizacion.getSubtotal());
+        dto.setIva(cotizacion.getIva());
+        dto.setTotalGeneral(cotizacion.getTotalGeneral());
+        dto.setClienteProspecto(cotizacion.getClienteProspecto());
+        dto.setVendedor(cotizacion.getVendedor());
+        dto.setGarantia(cotizacion.getGarantia());
+        dto.setDetalleCostos(cotizacion.getDetalleCostos());
+        dto.setDetalleTabla(cotizacion.getDetalleTabla());
+        dto.setSaludo(cotizacion.getSaludo());
+
+        // Mapear detalles
+        dto.setDetalles(
+            detalleCotizacionMapper.toDTOList(
+                detalleCotizacionRepository
+                    .findByCotizacion_IdCotizacion(cotizacionId)
+            )
         );
+        
+        return dto;
     }
+
+   
+
     
-    public List<CotizacionConDetallesDTO> getCotizacionesConDetalles() {
-    	return cotizacionRepository.findAll()
-                .stream()
-                .map(cotizacion -> {
-
-                    CotizacionConDetallesDTO dto = new CotizacionConDetallesDTO();
-
-                    // 1️⃣ Mapear cotización
-                    CotizacionDTO cotizacionDTO = cotizacionMapper.toDTO(cotizacion);
-
-                    dto.setIdCotizacion(cotizacionDTO.getIdCotizacion());
-                    dto.setFechaEmision(cotizacionDTO.getFechaEmision());
-                    dto.setFechaVencimiento(cotizacionDTO.getFechaVencimiento());
-                    //dto.setSubtotal(cotizacionDTO.getSubtotal());
-                    //dto.setIva(cotizacionDTO.getIva());
-                    dto.setTotalGeneral(cotizacionDTO.getTotalGeneral());
-                    dto.setClienteProspecto(cotizacionDTO.getClienteProspecto());
-                    //dto.setVendedor(cotizacionDTO.getVendedor());
-                    dto.setGarantia(cotizacionDTO.getGarantia());
-
-                    // 2️⃣ Obtener y mapear detalles
-                    List<DetalleCotizacionDTO> detalles =
-                            detalleCotizacionMapper.toDTOList(
-                                    detalleCotizacionRepository
-                                            .findByCotizacion_IdCotizacion(
-                                                    cotizacion.getIdCotizacion()
-                                            )
-                            );
-
-                    dto.setDetalles(detalles);
-
-                    return dto;
-                })
-                .toList();
-    }
     
     
     

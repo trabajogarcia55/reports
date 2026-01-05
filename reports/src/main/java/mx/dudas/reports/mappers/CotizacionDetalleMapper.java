@@ -14,8 +14,5 @@ public interface CotizacionDetalleMapper {
     @Mapping(source = "cotizacion.idCotizacion", target = "idCotizacion")
     DetalleCotizacionDTO toDTO(DetalleCotizacion entity);
 
-    @Mapping(target = "cotizacion", ignore = true)
-    DetalleCotizacion toEntity(DetalleCotizacionDTO dto);
-
     List<DetalleCotizacionDTO> toDTOList(List<DetalleCotizacion> entities);
 }
